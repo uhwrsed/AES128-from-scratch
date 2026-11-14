@@ -1,2 +1,20 @@
-# aes128-from-scratch
-A from-scratch AES128 implementation in C, exploring the mathematics, internal transformations, and mechanics of symmetric-key encryption. Built as a cryptography learning project, with the long-term goal of developing a file encryption and decryption utility.
+# AES128-from-scratch
+AES-128 encryption implemented from scratch in C, built as a learning project to understand how the cipher works internally
+
+## Progress
+
+- [x] SubBytes
+- [x] ShiftRows
+- [ ] MixColumns
+- [ ] AddRoundKey
+- [ ] Key expansion
+- [ ] Full encryption rounds
+- [ ] Test against official test vectors
+
+## Build
+
+    make
+
+## Note
+
+This is for learning only. Don't use it to protect real data.
