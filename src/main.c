@@ -44,6 +44,20 @@ void shiftRows(aes_state *state){
     }
 }
 
+uint8_t xtime(uint8_t x){
+    uint8_t top = x & 0x80;
+    x = x << 1;
+    if (top > 0){
+        x ^= 0x1B;
+    }
+    return x;
+}
+
+uint8_t mul3(uint8_t x){
+    x ^= xtime(x);
+    return x;
+}
+
 void mixColumns(){
 
 }
@@ -61,12 +75,21 @@ int main(){
 	subBytes(&state);
     shiftRows(&state);
 
-	for (int row = 0; row < 4; row++) {
-    		for (int col = 0; col < 4; col++) {
-        		printf("%02X ", state.bytes[row][col]);
-    		}
-    	printf("\n");
-	}
+//test values
+/*printf("%02X\n", xtime(0x57));
+printf("%02X\n", xtime(0xAE));
+printf("%02X\n", xtime(0x47));
+*/
+
+printf("%02X\n", mul3(0x56));
+printf("%02X\n", mul3(0x01));
+
+for (int row = 0; row < 4; row++) {
+	for (int col = 0; col < 4; col++) {
+        printf("%02X ", state.bytes[row][col]);
+    }
+    printf("\n");
+}
 
 	return 0;
 }
