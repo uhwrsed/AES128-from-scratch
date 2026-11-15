@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdint.h>
+#include "transformations.c"
 
 typedef struct {
 	uint8_t bytes[4][4];
@@ -72,17 +73,8 @@ int main(){
     		}
 	};
 
-	subBytes(&state);
-    shiftRows(&state);
-
-//test values
-/*printf("%02X\n", xtime(0x57));
-printf("%02X\n", xtime(0xAE));
-printf("%02X\n", xtime(0x47));
-*/
-
-printf("%02X\n", mul3(0x56));
-printf("%02X\n", mul3(0x01));
+subBytes(&state);
+shiftRows(&state);
 
 for (int row = 0; row < 4; row++) {
 	for (int col = 0; col < 4; col++) {
