@@ -68,3 +68,12 @@ void mixColumns(aes_state *state){
 		state->bytes[3][col] = mul3(a0) ^ a1 ^ a2 ^ xtime(a3);
 	}	
 }
+
+void addRoundKey(aes_state *state, const aes_state *round_key){
+	for (int row = 0; row < 4; row++){
+		for (int col = 0; col < 4; col++){
+			state->bytes[row][col] = state->bytes[row][col] ^ round_key->bytes[row][col];
+		}
+	}
+}
+

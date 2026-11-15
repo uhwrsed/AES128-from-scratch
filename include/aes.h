@@ -9,5 +9,6 @@ typedef struct {
 void subBytes(aes_state *state);
 void shiftRows(aes_state *state);
 void mixColumns(aes_state *state);
+void addRoundKey(aes_state *state, const aes_state *round_key);
 
 #endif

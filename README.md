@@ -6,7 +6,7 @@ AES-128 encryption implemented from scratch in C, built as a learning project to
 - [x] SubBytes
 - [x] ShiftRows
 - [x] MixColumns
-- [ ] AddRoundKey
+- [x] AddRoundKey
 - [ ] Key expansion
 - [ ] Full encryption rounds
 - [ ] Test against official test vectors
