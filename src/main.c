@@ -59,8 +59,19 @@ uint8_t mul3(uint8_t x){
     return x;
 }
 
-void mixColumns(){
+void mixColumns(aes_state *state){
+	for (int col = 0; col < 4; col++){
+		uint8_t a0 = state->bytes[0][col];
+		uint8_t a1 = state->bytes[1][col];
+		uint8_t a2 = state->bytes[2][col];
+		uint8_t a3 = state->bytes[3][col];
+	
 
+		state->bytes[0][col] = xtime(a0) ^ mul3(a1) ^ a2 ^ a3;
+		state->bytes[1][col] = a0 ^ xtime(a1) ^ mul3(a2) ^ a3;
+		state->bytes[2][col] = a0 ^ a1 ^ xtime(a2) ^ mul3(a3);
+		state->bytes[3][col] = mul3(a0) ^ a1 ^ a2 ^ xtime(a3);
+	}	
 }
 
 int main(){
@@ -73,8 +84,10 @@ int main(){
     		}
 	};
 
-subBytes(&state);
-shiftRows(&state);
+	subBytes(&state);
+	shiftRows(&state);
+	mixColumns(&state);
+	
 
 for (int row = 0; row < 4; row++) {
 	for (int col = 0; col < 4; col++) {
